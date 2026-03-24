@@ -1,0 +1,117 @@
+/* Tarjeta con clase 'card formulario' */
+:root{
+    --color-slidebar:rgb(226, 231, 235);    
+    --color-main:rgb(244, 247, 250);
+    --color-texto:rgba(25, 22, 22, 0.836);
+    --color-texto-hover:  rgba(129, 67, 191, 0.8);
+
+    
+
+}
+
+.card.formulario {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Título de la tarjeta */
+.card.formulario h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilos del formulario */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: solid 1px black;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Estilo del botón */
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color:rgba(60, 7, 72, 0.842); /* Color verde */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-group button:hover {
+    background-color:var(--color-texto-hover);
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+    .card.formulario {
+        padding: 15px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group select {
+        padding: 6px;
+    }
+
+    .form-group button {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+/* Caja general de errores */
+.alert-danger {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+
+.alert-danger ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+
+.text-danger {
+    color: #dc3545; 
+    font-size: 13px;
+    margin-top: 4px;
+    display: block;
+}
+
+
+input.is-invalid,
+select.is-invalid,
+textarea.is-invalid {
+    border-color: #dc3545;
+    background-color: #f8d7da33; 
+}
