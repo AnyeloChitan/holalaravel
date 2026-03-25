@@ -2,12 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::resource('/categoria',CategoriaController::class )->parameters(["categoria"=>"categoria"]);
+
+Route::resource('/producto',ProductoController::class);
 
 Route::get('/hola', function () {
     return "hola";
