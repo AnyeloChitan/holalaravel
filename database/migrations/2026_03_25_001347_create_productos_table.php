@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("imagen");
             $table->decimal("precio");
             $table->decimal("precio_venta");
-            $table->integer("stocK");
+            $table->integer("stock");
 
             $table->foreignId("id_categoria")
             ->constrained("categorias")

@@ -10,11 +10,41 @@ Productos
    <h2 class="titulo-tabla"> Listado de productos</h2>
    
  <nav class="nav-botones">
+    {{-- formulario para filtros y busqueda --}}
+    <form action="{{ route('producto.index') }}" method="GET" class="form-filtros">
+        {{-- filtro por categoria --}}
+        <select name="categoria" class="filtro-select">
+            <option value="">Categoria</option>
+            @foreach ( $categorias as $categoria)
+                <option value="{{ $categoria->id }}"{{ request('categoria')== $categoria->id? 'selected':''}}>
+                    {{ $categoria->nombre }}
+                </option>
+            @endforeach
+        </select>
+        {{-- filtro por stock --}}
+        <select name="stock" class= "filtro-select">
+            <option value="">Stock</option>
+            <option value="con"{{ request('stock')=='con'?'selected':'' }}>Con stock</option>
+            <option value="sin"{{ request('stock')=='sin'?'selected':'' }}>Sin stock</option>
+
+        </select>
+        {{-- filtro por nombre del producto --}}
+        <input type="text" name='buscar' placeholder="Buscar producto..." value="{{ request ('buscar') }}"
+         class="filtro-input">
+         <button type="submit" class="nav-link btn-filtrar">Filtrar</button>
+         {{-- boton para borar busqueda --}}
+        <a href="{{ route('producto.index') }}" class="nav-link btn-filtrar">Limpiar</a>
+          
+    </form>
                
         <ul class="nav-menu">
-            
+            @can('producto.create')
             <li class="nav-item">
                 <a href="{{route('producto.create')}}" class="nav-link btn-agregar">Agregar Producto</a>
+            </li>
+            @endcan
+             <li class="nav-item">
+                <a href="{{route('pdf.productos')}}" class="nav-link btn-agregar">Generar PDF</a>
             </li>
             
 
@@ -82,7 +112,10 @@ Productos
           
        </tbody>
    </table>
-    
+    {{-- resultados de paginacion --}}
+    <div class="nav-botones">
+       {{ $productos->links('vendor.pagination.default') }}
+    </div>
     </div>
 </section>
 @endsection

@@ -1,22 +1,35 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PdfController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/categoria',CategoriaController::class )->parameters(["categoria"=>"categoria"]);
 
-Route::resource('/producto',ProductoController::class);
 
-Route::get('/hola', function () {
-    return "hola";
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //ruta categorias
+    Route::resource('/categoria',CategoriaController::class)->parameters([
+    'categoria' => 'categoria']);
+    //ruta productos
+   Route::resource('/producto',ProductoController::class);
+   
+    //pdf
+    Route::get('/pdfProductos', [PdfController::class, 'pdfProductos'])->name('pdf.productos');
+    
 });
 
-
-Route::get('/hola/{nombre}/{apellido}', function ($nombre,$apellido=null) {
-    return "hola $nombre $apellido";
-});
+require __DIR__.'/auth.php';
